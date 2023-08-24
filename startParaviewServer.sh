@@ -9,14 +9,15 @@
 # By modifying your environment path by PATH=$HOME/bin:$PATH afterwards,
 # you can use pvserver as before.
 
-
-module load ParaView
+ml purge
+ml Stages/2023 GCC ParaStationMPI ParaView/5.11.0-EGL ParaViewPlugin-Nek5000/20230208-EGL
 
 #Connect-Id must be of type integer
-CONNECTID=$(cat /dev/urandom | tr -dc '1-9' | fold -w 6 | head -n 1)
+CONNECTID=$(shuf -i 100000-999999 -n 1)
 echo "Your connection ID:" $CONNECTID
 
 #Write Connect ID to file
-echo "$CONNECTID" > ~/Public/.paraviewConnectID.txt
+echo "$CONNECTID" > $HOME/Public/.paraviewConnectID.txt
 
-$EBROOTPARAVIEW/bin/pvserver --connect-id=$CONNECTID "$@" --sp=12345 --no-mpi --disable-xdisplay-test
+pvserver --connect-id=$CONNECTID "$@" --sp=12347 --no-mpi --disable-xdisplay-test
+
