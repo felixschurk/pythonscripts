@@ -12,12 +12,6 @@
 ml purge
 ml Stages/2023 GCC ParaStationMPI ParaView/5.11.0-EGL ParaViewPlugin-Nek5000/20230208-EGL
 
-#Connect-Id must be of type integer
-# CONNECTID=$(shuf -i 100000-999999 -n 1)
-# echo "Your connection ID:" $CONNECTID
 
-#Write Connect ID to file
-# echo "$CONNECTID" > $HOME/Public/.paraviewConnectID.txt
-
-pvserver --sp=12347 # --no-mpi --disable-xdisplay-test # --connect-id=$CONNECTID "$@"
+pvserver --sp=12347
 
